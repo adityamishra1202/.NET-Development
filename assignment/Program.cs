@@ -1,40 +1,41 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 using System;
+using System.Collections.Generic;
+
 class Program
 {
-    static void Main(){
-    
-        Student st=new Student("Charan","IIT",12022001,"Electronics",'M',190.23f);
-        // st.name="Hariom";
-        // st.institute="IIT";
-        // st.branch="Electronics";
-        // st.dob=12022007;
-        // st.gender='M';
-        // st.height=189.6f;
-        
-        st.display();
-        Console.WriteLine("\n");
-
-        int[]arr=new int[3];
-        arr[0]=23;
-        arr[1]=11;
-        arr[2]=111;
-        foreach(int elements in arr)
+    static void Main()
+    {
+        List<Employee> emp = new List<Employee>()
         {
-        Console.WriteLine(elements);
-        }
-        Console.WriteLine("\n \n");
-        
-        
-        Collections c=new Collections();
-        c.arr();
-    
-        Question1 q1=new Question1();
-        q1.company();
-        
+            new PermanentEmployee(101,"Ram","IT"),
+            new ContractEmployee(102,"Shyam","HR"),
+            new PermanentEmployee(103,"Amit","CSE")
+        };
 
-        Question2 q2=new Question2();
-        q2.library();
-}
+        foreach (Employee e in emp)
+            e.Display();
+
+        List<LeaveRequest> leave = new List<LeaveRequest>()
+        {
+            new LeaveRequest(1,101,2,"Medical"),
+            new LeaveRequest(2,103,5,"Vacation")
+        };
+
+        foreach (LeaveRequest l in leave)
+            l.Display();
+
+        Console.WriteLine("Permanent Employees");
+        foreach (Employee e in emp)
+            if (e is PermanentEmployee)
+                e.Display();
+
+        Console.WriteLine("Employee ID 103");
+        foreach (Employee e in emp)
+            if (e.EmployeeId == 103)
+                e.Display();
+
+        Console.WriteLine("Total Employees = " + emp.Count);
+        Console.WriteLine("Total Leave Requests = " + leave.Count);
     }
-
+}
