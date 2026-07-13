@@ -1,41 +1,216 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.IO.Compression;
 
 class Program
 {
     static void Main()
     {
-        List<Employee> emp = new List<Employee>()
+
+        List<StudentR> students = new List<StudentR>();
+        List<CourseManage> courses = new List<CourseManage>();
+        while (true)
         {
-            new PermanentEmployee(101,"Ram","IT"),
-            new ContractEmployee(102,"Shyam","HR"),
-            new PermanentEmployee(103,"Amit","CSE")
-        };
+            Console.WriteLine("1.Add a Student");
+            Console.WriteLine("2.Display the registered students");
+            Console.WriteLine("3.Add The Course");
+            Console.WriteLine("4.View All courses");
+            Console.WriteLine("5.Enroll for the course");
+            Console.WriteLine("6.Search Student");
+            Console.WriteLine("8.Exit");
+            Console.WriteLine("7.View Student details");
+            Console.WriteLine("Enter choice 1-8");
+            int choice = Convert.ToInt32(Console.ReadLine());
 
-        foreach (Employee e in emp)
-            e.Display();
+            switch (choice)
+            {
+                case 1:
+                    Console.Write("Enter the id:");
+                    int id = Convert.ToInt32(Console.ReadLine());
+                    bool enter = false;
+                    foreach (StudentR stu in students)
+                    {
+                        if (stu.Sid == id)
+                        {
+                            enter = true;
+                            break;
+                        }
+                    }
+                    if (enter)
+                    {
+                        Console.WriteLine("Student Already Registered");
+                        break;
+                    }
+                    Console.Write("Enter student name: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Enter Student Type (Regular/Scholarship/Part-Time): ");
+                    string type = Console.ReadLine();
 
-        List<LeaveRequest> leave = new List<LeaveRequest>()
-        {
-            new LeaveRequest(1,101,2,"Medical"),
-            new LeaveRequest(2,103,5,"Vacation")
-        };
 
-        foreach (LeaveRequest l in leave)
-            l.Display();
+                    Console.Write("Enter the department: ");
+                    string dept = Console.ReadLine();
+                    StudentR student = new StudentR(id, name, dept, type);
+                    students.Add(student);
+                    break;
 
-        Console.WriteLine("Permanent Employees");
-        foreach (Employee e in emp)
-            if (e is PermanentEmployee)
-                e.Display();
+                case 2:
+                    if (students.Count == 0)
+                    {
+                        break;
+                    }
+                    foreach (StudentR stu in students)
+                    {
+                        stu.display();
+                    }
+                    break;
+                case 3:
+                    Console.Write("Enter the course id:");
+                    int iid = Convert.ToInt32(Console.ReadLine());
+                    bool entry = false;
+                    foreach (CourseManage cm in courses)
+                    {
+                        if (cm.Cid == iid)
+                        {
+                            entry = true;
+                            break;
+                        }
+                    }
+                    if (entry)
+                    {
+                        Console.WriteLine("Course Already Registered");
+                        break;
+                    }
+                    Console.Write("Enter course name: ");
+                    string Cname = Console.ReadLine();
+                    Console.Write("Enter Credits : ");
+                    int credit = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("Employee ID 103");
-        foreach (Employee e in emp)
-            if (e.EmployeeId == 103)
-                e.Display();
+                    CourseManage course = new CourseManage(iid, Cname, credit);
 
-        Console.WriteLine("Total Employees = " + emp.Count);
-        Console.WriteLine("Total Leave Requests = " + leave.Count);
+                    courses.Add(course);
+                    break;
+                case 4:
+
+                    if (courses.Count == 0)
+                    {
+                        break;
+                    }
+                    foreach (CourseManage cm in courses)
+                    {
+                        cm.Show();
+                    }
+                    break;
+
+                case 5:
+
+                    Console.Write("Enter Student ID: ");
+                    int ssid = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("Enter Course ID: ");
+                    int cid = Convert.ToInt32(Console.ReadLine());
+
+                    bool studentFound = false;
+                    bool courseFound = false;
+
+                    foreach (StudentR stu in students)
+                    {
+                        if (stu.Sid == ssid)
+                        {
+                            studentFound = true;
+
+                            foreach (CourseManage cm in courses)
+                            {
+                                if (cm.Cid == cid)
+                                {
+                                    courseFound = true;
+                                    stu.add(cm);
+                                    break;
+                                }
+                            }
+
+                            if (!courseFound)
+                            {
+                                Console.WriteLine("Course not found.");
+                            }
+
+                            break;
+                        }
+                    }
+
+                    if (!studentFound)
+                    {
+                        Console.WriteLine("Student not found.");
+                    }
+
+                    break;
+
+
+                case 6:
+                    Console.Write("Enter Student ID : ");
+                    int sid = Convert.ToInt32(Console.ReadLine());
+
+                    bool found = false;
+
+                    foreach (StudentR s in students)
+                    {
+                        if (s.Sid == sid)
+                        {
+                            s.display();
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                        Console.WriteLine("Student not found.");
+                    break;
+
+
+                case 7:
+                    Console.Write("Enter Student ID : ");
+                    int sssid = Convert.ToInt32(Console.ReadLine());
+
+                    foreach (StudentR s in students)
+                    {
+                        if (s.Sid == sssid)
+                        {
+                            s.display();
+
+                            Console.WriteLine("Enrolled Courses");
+
+                            s.enrolledcourses();
+
+                            Console.WriteLine("Total Credits : " + s.TotalCredits);
+
+                            Console.WriteLine("Fee : " + s.CalculateFee());
+
+                            break;
+                        }
+
+                    }
+                    break;
+                case 8:
+                    return;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+        }
+
     }
+
 }
