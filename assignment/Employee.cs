@@ -1,11 +1,13 @@
-class Employee
+﻿namespace _16July_Assign.Models
 {
-    public int EmpId;
-    public string EmpName;
-
-    public Employee(int id, string name)
+    public class Employee
     {
-        EmpId = id;
-        EmpName = name;
+        public int Employee_id {get; set;}
+        public string Employee_name {get; set;}
+        public string Department {get; set;}
+        public int Salary  {get; set;}
+        public string Email{get; set;}
+
+        
     }
 }
