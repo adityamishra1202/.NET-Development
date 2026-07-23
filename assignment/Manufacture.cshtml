@@ -1,0 +1,58 @@
+﻿@model _22_July_Assign.Models.Manufacture
+
+<div class="text-center">
+    <h3 class="display-4">Fill the Manufacturer for  the vehicle @TempData["VehicleName"] of brand @TempData["Brand"] </h3>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <table>
+
+        <tr>
+            <td>Manufacturer Name :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Manufacturer_Name)
+                @Html.ValidationMessageFor(m => m.Manufacturer_Name)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Country :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Country)
+                @Html.ValidationMessageFor(m => m.Country)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Phone No :</td>
+            <td>
+                @Html.TextBoxFor(m => m.ContactNumber)
+                @Html.ValidationMessageFor(m => m.ContactNumber)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Email Id :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </td>
+        </tr>
+
+    </table>
+}
+
+@if (TempData["Victory"] != null)
+{
+    <h3 style="color:green">@TempData["Victory"]</h3>
+}
