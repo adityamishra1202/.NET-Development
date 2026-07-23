@@ -1,11 +1,10 @@
-﻿namespace _16July_Assign.Models
+﻿namespace _21_July_Assign.Models
 {
     public class Department
     {
-        public string Department_name { get; set; }
-        public string Department_head { get; set; }
-        public long Hcontact { get; set; }
-        public string Hemail { get; set; }
-
+        public string Department_Name {  get; set; }
+        public string Department_Head {  get; set; }
+        public long Contact_No {  get; set; }
+        public string Email {  get; set; }
     }
 }
