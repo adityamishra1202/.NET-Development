@@ -1,0 +1,108 @@
+﻿@model _21_July_Assign.Models.Employee
+
+<div class="text-center">
+    <h1 class="display-4">Welcome </h1>
+   
+</div>
+@using(Html.BeginForm())
+{
+   @Html.ValidationSummary(true) 
+
+   <table>
+<tr>
+
+       <td>Id :</td>
+       <td>
+           @Html.TextBoxFor(m => m.Employee_Id)
+           @Html.ValidationMessageFor(m=>m.Employee_Id)
+
+       </td>
+
+
+        </tr>
+
+        <tr>
+
+            <td>Name :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Employee_Name)
+                @Html.ValidationMessageFor(m => m.Employee_Name)
+
+            </td>
+
+
+        </tr>
+        <tr>
+
+            <td>Department :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Department)
+                @Html.ValidationMessageFor(m => m.Department)
+
+            </td>
+
+
+        </tr>
+        <tr>
+
+            <td>Salary :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Salary)
+                @Html.ValidationMessageFor(m => m.Salary)
+
+            </td>
+
+
+        </tr>
+        <tr>
+
+            <td>Email :</td>
+            <td>
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+
+            </td>
+
+
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </td>
+        </tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
