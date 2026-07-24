@@ -1,0 +1,4 @@
+interface IBill
+{
+    void GenerateBill();
+}
