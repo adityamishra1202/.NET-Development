@@ -1,33 +1,44 @@
-using System;
 class Question1
 {
-    public void process()
+    public void company()
     {
-        int qcr=0;
-        int ps=0;
-        int nr=0;
-        int count=0;
-        for(int id = 1001; id <= 1020; id++)
-        {
-            if (id % 4 == 0)
-            {
-                qcr=qcr+1;
-            }
-            else if (id % 5 == 0)
-            {
-                ps=ps+1;
+        int sum=0;
+        
+        int[] sale = new int[6];
+        sale[0] = 72340;
+        sale[1] = 50000;
 
-            }
-            else
-            {
-                nr=nr+1;
-            }
-            count=count+1;
+        sale[2] = 99000;
+        sale[3] = 72390;
+        sale[4] = 77000;
+        sale[5] = 44000;
+        foreach(int s in sale)
+        {   Console.WriteLine(s);
+            sum+=s;
         }
-        Console.WriteLine("The packages processed: "+count);
-        Console.WriteLine("Number of packages requiring quality check :"+qcr);
-        Console.WriteLine("Number of packages requiring priority shipments :"+ps);
-        Console.WriteLine("The number of normal packgea are :"+nr);
+        int lowest=sale[0];
+        for(int i = 0; i <= 5; i++)
+        {
+            if (sale[i] < lowest)
+            {
+                lowest=sale[i];
+            }
+        }
+        Console.WriteLine("\n");
+        int highest=sale[0];
+        for(int i = 0; i <= 5; i++)
+        {
+            if (sale[i]>highest)
+            {
+                highest=sale[i];
+            }
+        }
+        Console.WriteLine("The total sale is :"+sum+"\n");
+        Console.WriteLine("The average sale is:"+sum/6);
+        Console.WriteLine("The highest sale is:"+highest);
+        Console.WriteLine("The lowest sale is:"+lowest);
+
+
     }
 
 }
