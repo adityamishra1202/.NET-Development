@@ -1,4 +1,0 @@
-interface IBill
-{
-    void GenerateBill();
-}
